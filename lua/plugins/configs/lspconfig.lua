@@ -101,7 +101,7 @@ lspconfig.rust_analyzer.setup {
 }
 lspconfig.clangd.setup {
   capabilities = M.capabilities,
-  filetypes = { 'cpp', 'c' },
+  filetypes = { 'cpp', 'c', 'cc' },
 }
 lspconfig.gopls.setup {
   capabilities = M.capabilities,
