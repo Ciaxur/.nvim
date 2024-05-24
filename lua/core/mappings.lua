@@ -269,15 +269,17 @@ M.telescope = {
   plugin = true,
 
   n = {
-    -- Toggle menu
+  -- Toggle menu
    ["<leader>t"]   = { '<cmd>Telescope<cr>', 'Opens the Telescope window.' },
-   ["<leader>tc"]      = { '<cmd>Telescope commands<cr>', 'Open Telescope commands window.' },
+   ["<leader>tc"]  = { '<cmd>Telescope commands<cr>', 'Open Telescope commands window.' },
 
     -- search
     ["<leader>rg"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
 
     -- find
-    ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", "Find files" },
+      -- Ctrl+P
+    ["<C-p>"]      = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<leader>fs"] = { "<cmd> lua require'telescope.builtin'.lsp_document_symbols{} <CR>", "Opens a window with document symbols" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
@@ -492,6 +494,14 @@ M.gitsigns = {
       "Toggle deleted",
     },
   },
+}
+
+M.glance = {
+  n = {
+    ["<leader>lr"] = { "<cmd>Glance references<CR>",      "Opens references preview" },
+    ["<leader>ld"] = { "<cmd>Glance definitions<CR>",     "Opens definitions preview" },
+    ["<leader>li"] = { "<cmd>Glance implementations<CR>", "Opens implementations preview" },
+  }
 }
 
 return M

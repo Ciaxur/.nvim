@@ -333,6 +333,19 @@ local default_plugins = {
     'jdhao/whitespace.nvim',
     event = "VimEnter",
   },
+
+  -- Glance. Code reference and definitions preview.
+  {
+    'DNLHC/glance.nvim',
+    lazy = false,
+    init = function()
+      require("core.utils").load_mappings "glance"
+    end,
+
+    config = function()
+      require "plugins.configs.glance"
+    end,
+  },
 }
 
 local config = require("core.utils").load_config()
