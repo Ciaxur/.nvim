@@ -504,4 +504,10 @@ M.glance = {
   }
 }
 
+M.ouroboros = {
+  n = {
+    ["<A-o>"] = { "<cmd>Ouroboros<CR>", "Opens .h/.cc related file" },
+  }
+}
+
 return M
