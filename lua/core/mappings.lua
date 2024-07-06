@@ -74,10 +74,76 @@ M.general = {
   },
 }
 
+local go_to_buffer_index = function (buf_index)
+  local bufs     = vim.t.bufs;
+  local bufs_len = #bufs;
+  local set_buf  = vim.api.nvim_set_current_buf;
+
+  if bufs_len >= buf_index then
+    set_buf(bufs[buf_index])
+  end
+end
+
 M.tabufline = {
   plugin = true,
 
   n = {
+    -- Alt+N where N is a number key. Goes to the tab buffer with respect to the number key.
+    ["<A-1>"] = {
+      function()
+        go_to_buffer_index(1)
+      end,
+      "Goes to buffer 1"
+    },
+    ["<A-2>"] = {
+      function()
+        go_to_buffer_index(2)
+      end,
+      "Goes to buffer 2"
+    },
+    ["<A-3>"] = {
+      function()
+        go_to_buffer_index(3)
+      end,
+      "Goes to buffer 3"
+    },
+    ["<A-4>"] = {
+      function()
+        go_to_buffer_index(4)
+      end,
+      "Goes to buffer 4"
+    },
+    ["<A-5>"] = {
+      function()
+        go_to_buffer_index(5)
+      end,
+      "Goes to buffer 5"
+    },
+    ["<A-6>"] = {
+      function()
+        go_to_buffer_index(6)
+      end,
+      "Goes to buffer 6"
+    },
+    ["<A-7>"] = {
+      function()
+        go_to_buffer_index(7)
+      end,
+      "Goes to buffer 7"
+    },
+    ["<A-8>"] = {
+      function()
+        go_to_buffer_index(8)
+      end,
+      "Goes to buffer 8"
+    },
+    ["<A-9>"] = {
+      function()
+        go_to_buffer_index(9)
+      end,
+      "Goes to buffer 9"
+    },
+
     -- cycle through buffers
     ["<tab>"] = {
       function()
@@ -284,11 +350,11 @@ M.telescope = {
     ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", "Find buffers" },
     ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", "Help page" },
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
-    ["ggeader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
+    ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
-    ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
+    ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
     ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
