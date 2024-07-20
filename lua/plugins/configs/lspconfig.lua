@@ -6,8 +6,11 @@ local M = {}
 local utils = require "core.utils"
 local lspconfig = require("lspconfig")
 
--- export on_attach & capabilities for custom lspconfigs
+-- Export mason's installed LSPs to PATH.
+local user_homedir_path = vim.loop.os_homedir()
+vim.env.PATH = vim.env.PATH .. ':' .. user_homedir_path .. '/.local/share/nvim/mason/bin'
 
+-- export on_attach & capabilities for custom lspconfigs
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
@@ -43,11 +46,11 @@ M.capabilities.textDocument.completion.completionItem = {
   },
 }
 
-
 -- Language server setup
 lspconfig.lua_ls.setup {
   on_attach = M.on_attach,
   capabilities = M.capabilities,
+  filetypes = { 'lua' },
 
   settings = {
     Lua = {
