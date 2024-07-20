@@ -91,6 +91,6 @@ M.lazy_nvim = require "plugins.configs.lazy_nvim" -- config for lazy.nvim startu
 
 M.mappings = require "core.mappings"
 
-M.commands = require "core.commands"
+M.commands = require "core.key_commands"
 
 return M
