@@ -301,5 +301,19 @@ neogit.setup({
 
 -- See: https://github.com/NeogitOrg/neogit/blob/4689f716a97b3ec5c135ff9eac513974acb18cdc/syntax/NeogitStatus.vim
 -- Override the highlight group configurations.
-vim.api.nvim_set_hl(0, 'NeogitDiffAddHighlight', { bg = '#404040', fg = '#859900' })
-vim.api.nvim_set_hl(0, 'NeogitDiffDeleteHighlight', { bg = '#404040', fg = '#dc322f' })
+--
+-- To list all highlights -> :hi
+-- For more info          -> :help nvim_set_hl
+local set_highlight = vim.api.nvim_set_hl;
+
+set_highlight(0, 'NeogitDiffAddHighlight',      { bg='#404040', fg='#859900' })
+set_highlight(0, 'NeogitDiffDeleteHighlight',   { bg='#404040', fg='#dc322f' })
+
+set_highlight(0, 'NeogitDiffDelete',            { bg='#090a0f', fg='#ff322f', bold=true })
+set_highlight(0, 'NeogitChangeDeleted',         { cterm={ bold=true, italic=true }, bold=true, italic=true, fg='#ff322f' })
+
+set_highlight(0, 'NeogitDiffContextHighlight',  { bg='#333333', fg='#b2b2b2' })
+set_highlight(0, 'NeogitHunkHeader',            { bg='#404040', fg='#cccccc' })
+set_highlight(0, 'NeogitHunkHeaderHighlight',   { bg='#4d4d4d', fg='#cccccc' })
+set_highlight(0, 'NeogitFold',                  { bg=nil,       fg=nil       })
+
