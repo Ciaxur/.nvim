@@ -343,7 +343,7 @@ M.telescope = {
     ["<leader>rg"] = { "<cmd> Telescope live_grep <CR>", "Live grep" },
 
     -- find
-      -- Ctrl+P
+    -- Ctrl+P
     ["<C-p>"]      = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>fs"] = { "<cmd> lua require'telescope.builtin'.lsp_document_symbols{} <CR>", "Opens a window with document symbols" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
@@ -353,7 +353,7 @@ M.telescope = {
     ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
 
     -- git
-    ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
+    ["<leader>gc"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
@@ -573,6 +573,12 @@ M.glance = {
 M.ouroboros = {
   n = {
     ["<A-o>"] = { "<cmd>Ouroboros<CR>", "Opens .h/.cc related file" },
+  }
+}
+
+M.neogit = {
+  n = {
+    ["<leader>gv"] = { "<cmd>Neogit<CR>", "Opens Neogit View" },
   }
 }
 

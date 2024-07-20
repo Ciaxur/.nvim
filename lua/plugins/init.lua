@@ -12,7 +12,6 @@
 -- All plugins have lazy=true by default, to load a plugin on startup just lazy=false
 -- List of all default plugins & their definitions
 local default_plugins = {
-
   "nvim-lua/plenary.nvim",
 
   {
@@ -104,30 +103,10 @@ local default_plugins = {
     end,
   },
 
-  -- git stuff
+  -- git signs
   {
     "lewis6991/gitsigns.nvim",
     ft = { "gitcommit", "diff" },
-    init = function()
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-        callback = function()
-          vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" },
-            {
-              on_exit = function(_, return_code)
-                if return_code == 0 then
-                  vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-                  vim.schedule(function()
-                    require("lazy").load { plugins = { "gitsigns.nvim" } }
-                  end)
-                end
-              end
-            }
-          )
-        end,
-      })
-    end,
     opts = function()
       return require("plugins.configs.others").gitsigns
     end,
@@ -368,6 +347,27 @@ local default_plugins = {
         switch_to_open_pane_if_possible = false,
       })
     end,
+  },
+
+  -- neogit An interactive and powerful Git interface for Neovim, inspired by Magit
+  {
+    "NeogitOrg/neogit",
+    init = function()
+      require("core.utils").load_mappings "neogit"
+    end,
+
+    config = function()
+      require "plugins.configs.neogit"
+    end,
+
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim",
+      -- "ibhagwan/fzf-lua",
+    },
   },
 }
 

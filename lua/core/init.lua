@@ -120,6 +120,28 @@ autocmd("BufWritePost", {
   end,
 })
 
+-- Event triggers lazy loading git-dependant plugins if in a .git working directory.
+-- Lazy load plugins:
+--  - gitsigns.nvim
+--  - neogit
+autocmd({ "BufRead" }, {
+  group = vim.api.nvim_create_augroup("GitPluginsLazyLoad", { clear = true }),
+  callback = function()
+    vim.fn.jobstart({ "git", "-C", vim.loop.cwd(), "rev-parse" },
+      {
+        on_exit = function(_, return_code)
+          if return_code == 0 then
+            vim.api.nvim_del_augroup_by_name "GitPluginsLazyLoad"
+            vim.schedule(function()
+              require("lazy").load({ plugins = { "gitsigns.nvim", "neogit" } })
+            end)
+          end
+        end
+      }
+    )
+  end,
+})
+
 -------------------------------------- commands ------------------------------------------
 local new_cmd = vim.api.nvim_create_user_command
 
