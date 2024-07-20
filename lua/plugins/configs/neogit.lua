@@ -298,3 +298,8 @@ neogit.setup({
     },
   },
 })
+
+-- See: https://github.com/NeogitOrg/neogit/blob/4689f716a97b3ec5c135ff9eac513974acb18cdc/syntax/NeogitStatus.vim
+-- Override the highlight group configurations.
+vim.api.nvim_set_hl(0, 'NeogitDiffAddHighlight', { bg = '#404040', fg = '#859900' })
+vim.api.nvim_set_hl(0, 'NeogitDiffDeleteHighlight', { bg = '#404040', fg = '#dc322f' })
