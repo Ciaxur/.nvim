@@ -104,8 +104,20 @@ lspconfig.clangd.setup {
   filetypes = { 'cpp', 'c', 'cc' },
 }
 lspconfig.gopls.setup {
+  cmd = { 'gopls' },
   capabilities = M.capabilities,
+  on_attach = M.on_attach,
   filetypes = { 'go' },
+  settings = {
+    gopls = {
+      experimentalPostfixCompletions = true,
+      analyses = {
+        unusedparams = true,
+        shadow = true,
+      },
+      staticcheck = true,
+    },
+  },
 }
 
 
