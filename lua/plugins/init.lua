@@ -373,6 +373,18 @@ local default_plugins = {
       -- "ibhagwan/fzf-lua",
     },
   },
+
+  -- Trouble | better diognostics tool
+  {
+    "folke/trouble.nvim",
+    event = "LspAttach",
+    init = function ()
+      require("core.utils").load_mappings "trouble"
+    end,
+    opts = function ()
+      require "plugins.configs.trouble"
+    end
+  },
 }
 
 local config = require("core.utils").load_config()

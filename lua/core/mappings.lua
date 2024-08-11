@@ -547,6 +547,12 @@ M.glance = {
   }
 }
 
+M.trouble = {
+  n = {
+    ["<leader>km"] = { "<cmd>Trouble diagnostics<CR>", "Opens trouble's diagnostics window" },
+  }
+}
+
 M.ouroboros = {
   n = {
     ["<A-o>"] = { "<cmd>Ouroboros<CR>", "Opens .h/.cc related file" },
