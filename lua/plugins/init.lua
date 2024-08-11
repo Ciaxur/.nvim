@@ -39,6 +39,9 @@ local default_plugins = {
     init = function()
       require("core.utils").load_mappings "nvterm"
     end,
+    opts = function ()
+      return require("plugins.configs.others").nvterm
+    end,
     config = function(_, opts)
       require "base46.term"
       require("nvterm").setup(opts)
@@ -146,6 +149,7 @@ local default_plugins = {
     "neovim/nvim-lspconfig",
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"
+      require("core.utils").load_mappings "lspconfig"
     end,
     config = function()
       require "plugins.configs.lspconfig"

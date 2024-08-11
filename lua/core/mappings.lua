@@ -200,18 +200,11 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
+    ["<leader>lD"] = {
       function()
         vim.lsp.buf.declaration()
       end,
       "LSP declaration",
-    },
-
-    ["gd"] = {
-      function()
-        vim.lsp.buf.definition()
-      end,
-      "LSP definition",
     },
 
     ["K"] = {
@@ -221,7 +214,7 @@ M.lspconfig = {
       "LSP hover",
     },
 
-    ["gi"] = {
+    ["<leader>li"] = {
       function()
         vim.lsp.buf.implementation()
       end,
@@ -235,35 +228,14 @@ M.lspconfig = {
       "LSP signature help",
     },
 
-    ["<leader>D"] = {
-      function()
-        vim.lsp.buf.type_definition()
-      end,
-      "LSP definition type",
-    },
-
-    ["<leader>ra"] = {
+    ["<leader>cr"] = {
       function()
         require("nvchad.renamer").open()
       end,
       "LSP rename",
     },
 
-    ["<leader>ca"] = {
-      function()
-        vim.lsp.buf.code_action()
-      end,
-      "LSP code action",
-    },
-
-    ["gr"] = {
-      function()
-        vim.lsp.buf.references()
-      end,
-      "LSP references",
-    },
-
-    ["<leader>lf"] = {
+    ["<leader>lgf"] = {
       function()
         vim.diagnostic.open_float { border = "rounded" }
       end,
@@ -284,28 +256,28 @@ M.lspconfig = {
       "Goto next",
     },
 
-    ["<leader>q"] = {
+    ["<leader>lm"] = {
       function()
         vim.diagnostic.setloclist()
       end,
-      "Diagnostic setloclist",
+      "Show diagnostics tab",
     },
 
-    ["<leader>wa"] = {
+    ["<leader>lwa"] = {
       function()
         vim.lsp.buf.add_workspace_folder()
       end,
       "Add workspace folder",
     },
 
-    ["<leader>wr"] = {
+    ["<leader>lwr"] = {
       function()
         vim.lsp.buf.remove_workspace_folder()
       end,
       "Remove workspace folder",
     },
 
-    ["<leader>wl"] = {
+    ["<leader>lwl"] = {
       function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
       end,
@@ -513,7 +485,7 @@ M.gitsigns = {
           return "]c"
         end
         vim.schedule(function()
-          require("gitsigns").next_hunk()
+          package.loaded.gitsigns.next_hunk()
         end)
         return "<Ignore>"
       end,
@@ -527,7 +499,7 @@ M.gitsigns = {
           return "[c"
         end
         vim.schedule(function()
-          require("gitsigns").prev_hunk()
+          package.loaded.gitsigns.prev_hunk()
         end)
         return "<Ignore>"
       end,
@@ -536,30 +508,30 @@ M.gitsigns = {
     },
 
     -- Actions
-    ["<leader>rh"] = {
+    ["<leader>ghr"] = {
       function()
-        require("gitsigns").reset_hunk()
+        package.loaded.gitsigns.reset_hunk()
       end,
       "Reset hunk",
     },
 
-    ["<leader>ph"] = {
+    ["<leader>ghp"] = {
       function()
-        require("gitsigns").preview_hunk()
+        package.loaded.gitsigns.preview_hunk()
       end,
       "Preview hunk",
     },
 
     ["<leader>gb"] = {
       function()
-        package.loaded.gitsigns.blame_line()
+        package.loaded.gitsigns.blame()
       end,
       "Blame line",
     },
 
-    ["<leader>td"] = {
+    ["<leader>gd"] = {
       function()
-        require("gitsigns").toggle_deleted()
+        package.loaded.gitsigns.toggle_deleted()
       end,
       "Toggle deleted",
     },
@@ -568,9 +540,10 @@ M.gitsigns = {
 
 M.glance = {
   n = {
-    ["<leader>lr"] = { "<cmd>Glance references<CR>",      "Opens references preview" },
-    ["<leader>ld"] = { "<cmd>Glance definitions<CR>",     "Opens definitions preview" },
-    ["<leader>li"] = { "<cmd>Glance implementations<CR>", "Opens implementations preview" },
+    ["<leader>lr"] = { "<cmd>Glance references<CR>",        "Opens references preview" },
+    ["<leader>ld"] = { "<cmd>Glance definitions<CR>",       "Opens definitions preview" },
+    ["<leader>lT"] = { "<cmd>Glance type_definitions<CR>",  "Opens type definitions preview" },
+    ["<leader>li"] = { "<cmd>Glance implementations<CR>",   "Opens implementations preview" },
   }
 }
 

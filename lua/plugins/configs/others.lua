@@ -58,9 +58,56 @@ M.gitsigns = {
     changedelete = { text = "~" },
     untracked = { text = "│" },
   },
+  signs_staged = {
+    add          = { text = '┃' },
+    change       = { text = '┃' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
+    changedelete = { text = '~' },
+    untracked    = { text = '┆' },
+  },
+  numhl = true,
+
+  current_line_blame = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'right_align', -- 'eol' | 'overlay' | 'right_align'
+    delay = 800,
+    ignore_whitespace = false,
+    virt_text_priority = 100,
+  },
+
   on_attach = function(bufnr)
     utils.load_mappings("gitsigns", { buffer = bufnr })
   end,
 }
+
+M.nvterm = {
+  terminals = {
+    shell = vim.o.shell,
+    list = {},
+    type_opts = {
+      float = {
+        relative = 'editor',
+        row = 0.1,
+        col = 0.20,
+        width = 0.6,
+        height = 0.75,
+        border = "single",
+      },
+      horizontal = { location = "rightbelow", split_ratio = .3, },
+      vertical = { location = "rightbelow", split_ratio = .5 },
+    }
+  },
+  behavior = {
+    autoclose_on_quit = {
+      enabled = false,
+      confirm = true,
+    },
+    close_on_exit = true,
+    auto_insert = true,
+  },
+}
+
 
 return M
