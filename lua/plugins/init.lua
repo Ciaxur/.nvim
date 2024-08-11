@@ -378,13 +378,23 @@ local default_plugins = {
   {
     "folke/trouble.nvim",
     event = "LspAttach",
-    init = function ()
+    init = function()
       require("core.utils").load_mappings "trouble"
     end,
-    opts = function ()
-      require "plugins.configs.trouble"
+    opts = function()
+      return require "plugins.configs.trouble"
     end
   },
+
+  -- todo highlight and tracking comments
+  {
+    "folke/todo-comments.nvim",
+    event = "LspAttach",
+    init = function()
+      require("core.utils").load_mappings "todo_comments"
+    end,
+    opts = require("plugins.configs.todo_comments"),
+  }
 }
 
 local config = require("core.utils").load_config()
