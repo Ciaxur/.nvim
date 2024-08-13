@@ -1,7 +1,9 @@
+-- NOTE: See docs ':h mason.nvim'
+
 local options = {
   ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
 
-  PATH = "skip",
+  PATH = "prepend",
 
   ui = {
     icons = {

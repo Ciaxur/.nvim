@@ -119,6 +119,12 @@ local default_plugins = {
     end,
   },
 
+  -- https://github.com/alvan/vim-closetag
+  {
+    "alvan/vim-closetag",
+    lazy = false,
+  },
+
   -- lsp stuff
   {
     "williamboman/mason.nvim",
@@ -139,20 +145,25 @@ local default_plugins = {
     end,
   },
 
-  -- https://github.com/alvan/vim-closetag
   {
-    "alvan/vim-closetag",
-    lazy = false,
+    "williamboman/mason-lspconfig.nvim",
+    opts = function()
+      return require('plugins.configs.mason-lspconfig');
+    end,
   },
 
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
     init = function()
       require("core.utils").lazy_load "nvim-lspconfig"
       require("core.utils").load_mappings "lspconfig"
     end,
     config = function()
-      require "plugins.configs.lspconfig"
+      return require "plugins.configs.lspconfig"
     end,
   },
 
