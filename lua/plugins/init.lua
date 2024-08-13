@@ -394,7 +394,17 @@ local default_plugins = {
       require("core.utils").load_mappings "todo_comments"
     end,
     opts = require("plugins.configs.todo_comments"),
-  }
+  },
+
+  -- Notification UI
+  --   For API docs ":h fidget.api"
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    opts = function()
+      return require("plugins.configs.fidget")
+    end,
+  },
 }
 
 local config = require("core.utils").load_config()
