@@ -568,6 +568,16 @@ M.trouble = {
 
 M.todo_comments = {}
 
+M.nvim_spectre = {
+  n = {
+    ["<leader>fr"] = { "<cmd>lua require(\"spectre\").toggle()<CR>", "Toggle Spectre (Find & Replace)." },
+  },
+
+  v = {
+    ["<leader>fr"] = { "<cmd>lua require(\"spectre\").open_visual() <CR>", "Toggle Spectre on currently highlighted word (Find & Replace)." },
+  },
+}
+
 M.ouroboros = {
   n = {
     ["<A-o>"] = { "<cmd>Ouroboros<CR>", "Opens .h/.cc related file" },

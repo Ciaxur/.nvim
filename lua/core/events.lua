@@ -1,5 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- NOTE: To view all registered events, run ':autocmd'
+
 -- dont list quickfix buffers
 autocmd("FileType", {
   pattern = "qf",

@@ -416,6 +416,18 @@ local default_plugins = {
       return require("plugins.configs.fidget")
     end,
   },
+
+  -- Find & Replace
+  {
+    "nvim-pack/nvim-spectre",
+    event = "VeryLazy",
+    init = function ()
+      require("core.utils").load_mappings("nvim_spectre");
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+  },
 }
 
 local config = require("core.utils").load_config()
