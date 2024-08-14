@@ -556,11 +556,13 @@ M.todo_comments = {}
 
 M.nvim_spectre = {
   n = {
-    ["<leader>fr"] = { "<cmd>lua require(\"spectre\").toggle()<CR>", "Toggle Spectre (Find & Replace)." },
+    ["<leader>fr"]  = { "<cmd>lua require(\"spectre\").toggle()<CR>", "Toggle Spectre (Find & Replace)." },
+    ["<C-f>"]       = { "<cmd>lua require(\"spectre\").open_file_search({select_word=true})<CR>", "Search on current file" },
   },
 
   v = {
-    ["<leader>fr"] = { "<cmd>lua require(\"spectre\").open_visual() <CR>", "Toggle Spectre on currently highlighted word (Find & Replace)." },
+    ["<leader>fr"]  = { "<cmd>lua require(\"spectre\").open_visual() <CR>", "Toggle Spectre on currently highlighted word (Find & Replace)." },
+    ["<C-f>"]       = { "<cmd>lua require(\"spectre\").open_file_search({select_word=true})<CR>", "Search currently highlighted word on current file" },
   },
 }
 
