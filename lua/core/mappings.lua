@@ -313,7 +313,7 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
+    ["<A-E>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
@@ -352,20 +352,6 @@ M.telescope = {
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
     ["<leader>ma"] = { "<cmd> Telescope marks <CR>", "telescope bookmarks" },
-  },
-}
-
-M.multicursors = {
-  plugin = true,
-
-  -- Normal mode
-  n = {
-    ['<leader>m'] = { '<cmd>MCstart<cr>', 'Create a selection for selected text or word under the cursor' },
-  },
-
-  -- Visual mode
-  v = {
-    ['<leader>m'] = { '<cmd>MCstart<cr>', 'Create a selection for selected text or word under the cursor' },
   },
 }
 

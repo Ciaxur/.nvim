@@ -309,17 +309,23 @@ local default_plugins = {
   },
 
   -- Multi-cursors plugin.
+  -- NOTE: Mappings can be found on ':h vm-mappings.txt'
+  --  This plugin is for vim, used in neovim. Which means the
+  --  configs are applied differently.
   {
-    "smoka7/multicursors.nvim",
-    init = function()
-      require("core.utils").load_mappings "multicursors"
-    end,
+    "mg979/vim-visual-multi",
     event = "VeryLazy",
-    dependencies = {
-      "smoka7/hydra.nvim"
-    },
-    opts = {},
-    cmd = { 'MCstart', 'MCvisual', 'MCclear', 'MCpattern', 'MCvisualPattern', 'MCunderCursor' },
+    init = function()
+      -- Disable default mappings.
+      vim.g.VM_default_mappings = 0;
+
+      -- Since this plugin is for vim, we need to do our own custom
+      -- mappings.
+      vim.g.VM_maps = {
+        ["Find Under"]         = "<C-d>",
+        ["Find Subword Under"] = "<C-d>",
+      };
+    end,
   },
 
   -- Whitespaces.
