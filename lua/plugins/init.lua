@@ -31,7 +31,7 @@ local default_plugins = {
   -- VimWiki: https://github.com/vimwiki/vimwiki
   {
     "vimwiki/vimwiki",
-    lazy = false,
+    event = "VeryLazy"
   },
 
   {
@@ -122,7 +122,7 @@ local default_plugins = {
   -- https://github.com/alvan/vim-closetag
   {
     "alvan/vim-closetag",
-    lazy = false,
+    event = "VeryLazy",
   },
 
   -- lsp stuff
@@ -302,7 +302,7 @@ local default_plugins = {
   -- sign. (:Tab /=)
   {
     "godlygeek/tabular",
-    lazy = false,
+    event = "VeryLazy",
     init = function()
       require("core.utils").load_mappings "tabular"
     end,
@@ -337,7 +337,7 @@ local default_plugins = {
   -- Glance. Code reference and definitions preview.
   {
     'DNLHC/glance.nvim',
-    lazy = false,
+    event = "VeryLazy",
     init = function()
       require("core.utils").load_mappings "glance"
     end,
@@ -350,7 +350,7 @@ local default_plugins = {
   -- Ouroboros. Opens .cc of header and header of .cc
   {
     'jakemason/ouroboros.nvim',
-    lazy = false,
+    event = "VeryLazy",
     init = function()
       require("core.utils").load_mappings "ouroboros"
     end,
