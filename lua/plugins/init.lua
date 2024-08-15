@@ -111,11 +111,11 @@ local default_plugins = {
     "lewis6991/gitsigns.nvim",
     ft = { "gitcommit", "diff" },
     opts = function()
-      return require("plugins.configs.others").gitsigns
+      return require("plugins.configs.gitsigns");
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git")
-      require("gitsigns").setup(opts)
+      dofile(vim.g.base46_cache .. "git");
+      require("gitsigns").setup(opts);
     end,
   },
 
