@@ -40,7 +40,7 @@ local default_plugins = {
       require("core.utils").load_mappings "nvterm"
     end,
     opts = function ()
-      return require("plugins.configs.others").nvterm
+      return require("plugins.configs.nvterm");
     end,
     config = function(_, opts)
       require "base46.term"
@@ -177,7 +177,7 @@ local default_plugins = {
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
-          require("plugins.configs.others").luasnip(opts)
+          require("plugins.configs.luasnip")(opts)
         end,
       },
 
