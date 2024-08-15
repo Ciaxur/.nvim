@@ -1,6 +1,9 @@
 local utils = require "core.utils"
 
 local config = {
+  -- Don't show signs for staged hunks.
+  signs_staged_enable = false,
+
   signs = {
     add = { text = "│" },
     change = { text = "│" },
