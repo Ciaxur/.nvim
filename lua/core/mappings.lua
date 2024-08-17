@@ -519,6 +519,26 @@ M.gitsigns = {
       "Toggle deleted",
     },
   },
+
+  v = {
+    ["<leader>gs"] = {
+      function()
+        vim.schedule(function()
+          package.loaded.gitsigns.stage_hunk();
+        end)
+      end,
+      "Stages currently selected chunk",
+    },
+
+    ["<leader>gr"] = {
+      function()
+        vim.schedule(function()
+          package.loaded.gitsigns.reset_hunk();
+        end)
+      end,
+      "Resets currently selected chunk",
+    },
+  },
 }
 
 M.glance = {
