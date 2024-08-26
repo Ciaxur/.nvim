@@ -13,6 +13,9 @@ M.general = {
 
   -- Prints all the session environment variables
   ["-nargs=0 PrintEnvs"] = "execute 'lua for k, v in pairs(vim.fn.environ()) do print(k .. \"=\" .. v) end'",
+
+  -- Copies the current open buffer's full path to clipboard
+  ["-nargs=0 CopyFileAbsPath"] = "normal! :let @+ = expand(\"%:p\")<CR>",
 }
 
 return M
