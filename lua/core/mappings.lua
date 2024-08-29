@@ -71,13 +71,8 @@ M.general = {
     -- Format highlighted text
     ["<leader>fm"] = {
       function ()
-        vim.lsp.buf.format({
-          async = true,
-          range = {
-            ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-            ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-          }
-        })
+        -- Not specifying a range, defaults to selected buffer in visual mode.
+        vim.lsp.buf.format({async = true});
       end,
       "Format highlighted block",
     },
