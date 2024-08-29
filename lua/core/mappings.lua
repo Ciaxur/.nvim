@@ -518,22 +518,39 @@ M.gitsigns = {
       end,
       "Toggle deleted",
     },
+
+    ["<leader>gu"] = {
+      function()
+        vim.schedule(function ()
+          package.loaded.gitsigns.undo_stage_hunk();
+        end)
+      end,
+      "Undo last staged hunk",
+    },
   },
 
   v = {
     ["<leader>gs"] = {
       function()
-        vim.schedule(function()
-          package.loaded.gitsigns.stage_hunk();
+        local line0 = vim.fn.getpos("v")[2];
+        local line1 = vim.fn.getcurpos()[2];
+        local selection_range = { line0, line1 };
+
+        vim.schedule(function ()
+          package.loaded.gitsigns.stage_hunk(selection_range);
         end)
       end,
-      "Stages currently selected chunk",
+      "Stages currently selected line range",
     },
 
     ["<leader>gr"] = {
       function()
+        local line0 = vim.fn.getpos("v")[2];
+        local line1 = vim.fn.getcurpos()[2];
+        local selection_range = { line0, line1 };
+
         vim.schedule(function()
-          package.loaded.gitsigns.reset_hunk();
+          package.loaded.gitsigns.reset_hunk(selection_range);
         end)
       end,
       "Resets currently selected chunk",
