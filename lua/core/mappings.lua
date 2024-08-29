@@ -594,4 +594,16 @@ M.neogit = {
   }
 }
 
+M.move = {
+  n = {
+    ["<S-C-Up>"]   = { "<cmd>MoveLine(-1)<CR>", "Moves current line up" },
+    ["<S-C-Down>"] = { "<cmd>MoveLine(1)<CR>", "Moves current line down" },
+  },
+
+  v = {
+    ["<S-C-Up>"]   = { ":MoveBlock(-1)<CR>", "Moves selected lines up" },
+    ["<S-C-Down>"] = { ":MoveBlock(1)<CR>", "Moves selected lines down" },
+  },
+}
+
 return M

@@ -1,14 +1,3 @@
--- Deleted plugins.
--- Coc: https://github.com/neoclide/coc.nvim
--- NOTE: Disabled to use luasnips
---  {
---    "neoclide/coc.nvim",
---    lazy = false,
---    branch = "release",
---    map_cr = false,
---  },
-
-
 -- All plugins have lazy=true by default, to load a plugin on startup just lazy=false
 -- List of all default plugins & their definitions
 local default_plugins = {
@@ -39,7 +28,7 @@ local default_plugins = {
     init = function()
       require("core.utils").load_mappings "nvterm"
     end,
-    opts = function ()
+    opts = function()
       return require("plugins.configs.nvterm");
     end,
     config = function(_, opts)
@@ -426,12 +415,22 @@ local default_plugins = {
   {
     "nvim-pack/nvim-spectre",
     event = "VeryLazy",
-    init = function ()
+    init = function()
       require("core.utils").load_mappings("nvim_spectre");
     end,
     dependencies = {
       "nvim-lua/plenary.nvim"
     },
+  },
+
+  -- Move selected lines
+  {
+    "fedepujol/move.nvim",
+    event = "VeryLazy",
+    init = function()
+      require("core.utils").load_mappings("move");
+    end,
+    opts = require("plugins.configs.move");
   },
 }
 
