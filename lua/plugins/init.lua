@@ -430,7 +430,22 @@ local default_plugins = {
     init = function()
       require("core.utils").load_mappings("move");
     end,
-    opts = require("plugins.configs.move");
+    opts = require("plugins.configs.move"),
+  },
+
+  -- Flatten - Enables opening files in current open nvim buffer
+  {
+    "willothy/flatten.nvim",
+    config = true,
+    opts = require("plugins.configs.flatten"),
+
+    -- Ensure enough delay until terminal is configured.
+    lazy = false,
+    priority = 1001,
+    dependencies = {
+      "NvChad/nvterm",
+    },
+
   },
 }
 
