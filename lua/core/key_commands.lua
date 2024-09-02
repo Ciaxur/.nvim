@@ -11,6 +11,9 @@ M.general = {
   -- ":UnFoldAll"
   ["-nargs=0 UnFoldAll"] = "normal! zR<CR>",
 
+  -- Splits current line into N lines based on the "textwidth" value.
+  ["-nargs=0 SplitLineTextWidth"] = "normal! gqap<CR>",
+
   -- Prints all the session environment variables
   ["-nargs=0 PrintEnvs"] = "execute 'lua for k, v in pairs(vim.fn.environ()) do print(k .. \"=\" .. v) end'",
 
