@@ -16,6 +16,9 @@ M.general = {
 
   -- Copies the current open buffer's full path to clipboard
   ["-nargs=0 CopyFileAbsPath"] = "normal! :let @+ = expand(\"%:p\")<CR>",
+
+  -- Copies the current open buffer's relative path to clipboard
+  ["-nargs=0 CopyFileRelPath"] = "normal! :let @+ = expand(\"%\")<CR>",
 }
 
 return M

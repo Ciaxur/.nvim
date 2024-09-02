@@ -445,7 +445,6 @@ local default_plugins = {
     dependencies = {
       "NvChad/nvterm",
     },
-
   },
 }
 
