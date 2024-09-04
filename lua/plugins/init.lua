@@ -312,6 +312,13 @@ local default_plugins = {
       vim.g.VM_maps = {
         ["Find Under"]         = "<C-d>",
         ["Find Subword Under"] = "<C-d>",
+
+        -- M = Ctrl
+        ["Select Cursor Down"] = "<M-C-Down>",
+        ["Select Cursor Up"]   = "<M-C-Up>",
+
+        -- Ctrl+Shift+L
+        ["Select All"]         = "<C-L>",
       };
     end,
   },
