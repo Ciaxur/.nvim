@@ -348,8 +348,7 @@ local default_plugins = {
     event = "VeryLazy",
     init = function()
       require("core.utils").load_mappings "ouroboros"
-    end,
-    config = function()
+
       require('ouroboros').setup({
         extension_preferences_table = {
           c   = {h = 2, hpp = 1},
