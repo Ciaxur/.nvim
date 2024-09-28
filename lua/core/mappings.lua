@@ -16,6 +16,9 @@ M.general = {
   },
 
   n = {
+    -- Swtich between cc headers and source files.
+    ["<A-o>"] = { "<cmd>ClangdSwitchSourceHeader<CR>", "Opens .h/.cc related file" },
+
     ["<Esc>"] = { "<cmd> noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-Left>"]  = { "<C-w>h", "Window left" },
@@ -580,12 +583,6 @@ M.nvim_spectre = {
     ["<leader>fr"]  = { "<cmd>lua require(\"spectre\").open_visual() <CR>", "Toggle Spectre on currently highlighted word (Find & Replace)." },
     ["<C-f>"]       = { "<cmd>lua require(\"spectre\").open_file_search({select_word=true})<CR>", "Search currently highlighted word on current file" },
   },
-}
-
-M.ouroboros = {
-  n = {
-    ["<A-o>"] = { "<cmd>Ouroboros<CR>", "Opens .h/.cc related file" },
-  }
 }
 
 M.neogit = {
