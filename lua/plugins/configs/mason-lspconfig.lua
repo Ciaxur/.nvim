@@ -73,8 +73,8 @@ local options = {
       };
     end,
 
-    ["tsserver"] = function()
-      lspconfig.tsserver.setup {
+    ["ts_ls"] = function()
+      lspconfig.ts_ls.setup {
         capabilities = lspconfig_options.capabilities,
       };
     end,
