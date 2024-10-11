@@ -430,6 +430,21 @@ local default_plugins = {
       "NvChad/nvterm",
     },
   },
+
+  -- text-case - Mutate text. Uppercase/Lowercase/Cammelcase/etc...
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    init = function ()
+      require("core.utils").load_mappings("text_case");
+    end,
+    config = function()
+      local config = require("plugins.configs.text_case");
+      require("textcase").setup(config);
+      require("telescope").load_extension("textcase");
+    end,
+    event = "BufEnter",
+  }
 }
 
 local config = require("core.utils").load_config()

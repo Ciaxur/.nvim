@@ -603,4 +603,13 @@ M.move = {
   },
 }
 
+M.text_case = {
+  n = {
+    ["<leader>co"] = { "<cmd>TextCaseOpenTelescope<CR>", "Opens TextCase menu" },
+  },
+  v = {
+    ["<leader>co"] = { "<cmd>TextCaseOpenTelescope<CR>", "Opens TextCase menu" },
+  }
+}
+
 return M
