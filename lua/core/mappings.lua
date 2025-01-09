@@ -321,6 +321,12 @@ M.nvimtree = {
 M.telescope = {
   plugin = true,
 
+  v = {
+  -- Toggle menu
+   ["<leader>t"]   = { '<cmd>Telescope<cr>', 'Opens the Telescope window.' },
+   ["<leader>tc"]  = { '<cmd>Telescope commands<cr>', 'Open Telescope commands window.' },
+  },
+
   n = {
   -- Toggle menu
    ["<leader>t"]   = { '<cmd>Telescope<cr>', 'Opens the Telescope window.' },

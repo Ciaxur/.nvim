@@ -21,6 +21,7 @@ opt.showmode = false
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
+opt.fileformat = "unix"
 
 -- Indenting
 opt.expandtab = true
