@@ -49,8 +49,33 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
 
-    -- new buffer
-    ["<leader>b"]  = { "<cmd> enew <CR>", "New buffer" },
+    -- Buffer menu
+    ["<leader>bn"]  = { "<cmd> enew <CR>", "New buffer" },
+    ["<leader>ba"]  = {
+      function ()
+        require("nvchad.tabufline").closeAllBufs(false)
+      end,
+      "Close all but current buffer"
+    },
+    ["<leader>bx"]  = {
+      function ()
+        require("nvchad.tabufline").close_buffer()
+      end,
+      "Close current buffer"
+    },
+    ["<leader>br"]  = {
+      function ()
+        require("nvchad.tabufline").move_buf(1)
+      end,
+      "Moves current tab right"
+    },
+    ["<leader>bl"]  = {
+      function ()
+        require("nvchad.tabufline").move_buf(-1)
+      end,
+      "Moves current tab left"
+    },
+
     ["<leader>?"]  = { "<cmd> NvCheatsheet <CR>", "Mapping cheatsheet" },
 
     ["<leader>fm"] = {
