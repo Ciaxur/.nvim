@@ -58,7 +58,6 @@ local options = {
       error = "",
     },
   },
-
   filesystem_watchers = {
     enable = true,
   },
@@ -71,7 +70,7 @@ local options = {
     root_folder_label = false,
 
     -- Value can be "none", "icon", "name" or "all".
-    --   Type: `string`, Default: `"none"`
+    --   Type: string, Default: "none"
     -- Requires nvim-tree.git.enable
     highlight_git = "icon",
     highlight_opened_files = "none",
