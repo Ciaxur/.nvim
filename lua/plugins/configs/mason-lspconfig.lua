@@ -6,7 +6,11 @@ local options = {
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
   -- This setting has no relation with the `automatic_installation` setting.
   ---@type string[]
-  ensure_installed = {},
+  ensure_installed = {
+    "lua_ls",
+    "rust_analyzer",
+    "clangd",
+  },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -25,10 +29,10 @@ local options = {
     -- and will be called for each installed server that doesn't have
     -- a dedicated handler.
     function(server_name) -- default handler (optional)
-      require("lspconfig")[server_name].setup {
+      lspconfig[server_name].setup {
         on_attach = lspconfig_options.on_attach,
         capabilities = lspconfig_options.capabilities,
-      }
+      };
     end,
     -- Next, you can provide targeted overrides for specific servers.
     ["lua_ls"] = function()
@@ -101,10 +105,7 @@ local options = {
     end,
 
     ["clangd"] = function()
-      lspconfig.clangd.setup {
-        capabilities = lspconfig_options.capabilities,
-        filetypes = { 'cpp', 'c', 'cc' },
-      };
+      lspconfig.clangd.setup(require('plugins.configs.clangd'));
     end,
 
     ["gopls"] = function()
