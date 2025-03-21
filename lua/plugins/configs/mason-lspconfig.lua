@@ -77,12 +77,6 @@ local options = {
       };
     end,
 
-    ["ts_ls"] = function()
-      lspconfig.ts_ls.setup {
-        capabilities = lspconfig_options.capabilities,
-      };
-    end,
-
     ["rust_analyzer"] = function()
       lspconfig.rust_analyzer.setup {
         -- Server-specific settings. See `:help lspconfig-setup`
@@ -101,6 +95,12 @@ local options = {
           vim.opt.tabstop = 2
           vim.opt.softtabstop = 2
         end,
+      };
+    end,
+
+    ["eslint"] = function()
+      lspconfig.eslint.setup {
+        capabilities = lspconfig_options.capabilities,
       };
     end,
 
