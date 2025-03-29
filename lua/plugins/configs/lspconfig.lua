@@ -4,6 +4,8 @@ require "nvchad.lsp"
 
 local M = {}
 local utils = require "core.utils"
+local lspconfig = require "lspconfig";
+local configs = require "lspconfig.configs";
 
 -- export on_attach & capabilities for custom lspconfigs
 M.on_attach = function(client, bufnr)
@@ -57,6 +59,34 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
   end,
 })
+
+
+-------------------------------------- custom lsp setup ------------------------------------------
+-- PlantUML LSP
+if not configs.plantuml_lsp then
+  -- Follow https://github.com/ptdewey/plantuml-lsp
+  configs.plantuml_lsp = {
+    default_config = {
+      cmd = {
+        -- go install github.com/ptdewey/plantuml-lsp@latest
+        "plantuml-lsp",
+
+        -- Extract using "plantuml -extractstdlib"
+        "--stdlib-path=/opt/plantuml/stdlib/",
+
+        -- With plantuml executable and available from your PATH there is a simpler method:
+        "--exec-path=plantuml",
+      },
+      filetypes = { "plantuml" },
+      root_dir = function(fname)
+        return lspconfig.util.find_git_ancestor(fname) or lspconfig.util.path.dirname(fname)
+      end,
+      settings = {},
+    }
+  };
+
+  lspconfig.plantuml_lsp.setup{};
+end
 
 
 return M

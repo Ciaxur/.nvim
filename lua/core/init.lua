@@ -69,6 +69,7 @@ g.mapleader = " "
 
 -------------------------------------- autocmds ------------------------------------------
 require "core.events"
+require "core.filetypes"
 
 -------------------------------------- commands ------------------------------------------
 require "core.user_vim_commands"

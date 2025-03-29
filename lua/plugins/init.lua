@@ -444,7 +444,13 @@ local default_plugins = {
       require("telescope").load_extension("textcase");
     end,
     event = "BufEnter",
-  }
+  },
+
+  -- PlantUML Syntax
+  {
+    "aklt/plantuml-syntax",
+    ft = "plantuml",
+  },
 }
 
 local config = require("core.utils").load_config()
