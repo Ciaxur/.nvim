@@ -177,7 +177,16 @@ map("n", "<leader>rg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live 
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
-map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "telescope find symbols current buffer" })
+map("n", "<leader>fs", function ()
+  -- see :h telescope.builtin.lsp_document_symbols
+  local telescope_builtin = require("telescope.builtin");
+  telescope_builtin.lsp_document_symbols({
+    fname_width = 40,
+    symbol_width = 40,
+    symbol_type_width = 20,
+  });
+end, { desc = "telescope find symbols current buffer" })
+
 map("n", "<leader>fa",
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "telescope find all files (no ignore & hidden files)" }

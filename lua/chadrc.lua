@@ -22,4 +22,19 @@ M.base46 = {
 --      }
 --}
 
+-- nvterm config
+M.term = {
+  sizes = {
+    vsp = 0.5,
+    sp = 0.3,
+  },
+
+  float = {
+    row = 0.1, col = 0.20,
+    width = 0.6, height = 0.75,
+    relative = "editor",
+    border = "single",
+  },
+};
+
 return M
