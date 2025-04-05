@@ -46,6 +46,7 @@ o.timeoutlen = 400
 o.undofile = true
 opt.backup = false
 opt.writebackup = false
+opt.termguicolors = true
 
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
@@ -53,6 +54,12 @@ o.updatetime = 250
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
 opt.whichwrap:append "<>[]hl"
+
+-- Folding - https://neovim.io/doc/user/fold.html
+opt.foldmethod = "indent"
+
+-- Unfolded by default
+opt.foldlevel = 99
 
 -- disable some default providers
 g.loaded_node_provider = 0
