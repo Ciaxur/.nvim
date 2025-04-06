@@ -197,7 +197,10 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help 
 map({ "n", "v" }, "<leader>tt", "<cmd>Telescope<CR>", { desc = "telescope menu" })
 map("n", "<leader>ts", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",
   { desc = "telescope dynamic workspace symbols" })
+
 map("n", "<leader>ta", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
+map("n", "<leader>tc", "<cmd>Telescope commands<CR>", { desc = "telescope commands" })
+
 map("n", "<leader>th", function()
   require("nvchad.themes").open()
 end, { desc = "telescope nvchad themes" })
