@@ -341,8 +341,8 @@ map("v", "<leader>fr", "<cmd>lua require(\"spectre\").open_visual() <CR>",
 map("n", "<S-C-Up>", "<cmd>MoveLine(-1)<CR>", { desc = "move current line up" })
 map("n", "<S-C-Down>", "<cmd>MoveLine(1)<CR>", { desc = "move current line down" })
 
-map("v", "<S-C-Up>", "<cmd>MoveBlock(-1)<CR>", { desc = "move selected block up" })
-map("v", "<S-C-Down>", "<cmd>MoveBlock(1)<CR>", { desc = "move selected block down" })
+map("v", "<S-C-Up>", ":MoveBlock(-1)<CR>", { desc = "move selected block up", silent = true })
+map("v", "<S-C-Down>", ":MoveBlock(1)<CR>", { desc = "move selected block down", silent = true })
 
 
 ----------------------------------------- text_case -----------------------------------------
