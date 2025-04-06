@@ -1,26 +1,41 @@
 -- This file needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v3.0/lua/nvconfig.lua
--- Please read that file to know all available options :(
+local utils = require "nvchad.stl.utils"
 
 ---@type ChadrcConfig
 local M = {}
 
+
 M.base46 = {
 	theme = "tokyonight",
   transparency = true,
-
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
 }
 
--- M.nvdash = { load_on_startup = true }
--- M.ui = {
---       tabufline = {
---          lazyload = false
---      }
---}
+M.nvdash = { load_on_startup = true }
+
+M.ui = {
+  tabufline = {
+    lazyload = false,
+    bufwidth = 21,
+  },
+
+  statusline = {
+    enabled = true,
+    theme = "vscode_colored",
+    separator_style = "default",
+    modules = {
+      -- Modified from nvchad/stl/vscode_colored.lua
+      file = function ()
+        local x = utils.file()
+
+        local current_buf = vim.api.nvim_get_current_buf();
+        local current_file = vim.api.nvim_buf_get_name(current_buf);
+        local relative_path = vim.fn.fnamemodify(current_file, ":.");
+        return "%#StText# " .. x[1] .. " " .. relative_path .. " "
+      end,
+    },
+  },
+}
 
 -- nvterm config
 M.term = {
