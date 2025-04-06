@@ -1,24 +1,22 @@
--- See https://www.andersevenrud.net/neovim.github.io/lsp/configurations/
-dofile(vim.g.base46_cache .. "lsp")
-require "nvchad.lsp"
-
 local M = {}
-local utils = require "core.utils"
 local lspconfig = require "lspconfig";
 local configs = require "lspconfig.configs";
+local nvconfig = require("nvconfig");
 
 -- export on_attach & capabilities for custom lspconfigs
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false
   client.server_capabilities.documentRangeFormattingProvider = false
 
-  utils.load_mappings("lspconfig", { buffer = bufnr })
-
-  if client.server_capabilities.signatureHelpProvider then
-    require("nvchad.signature").setup(client)
+  if not nvconfig.ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+    client.server_capabilities.semanticTokensProvider = nil
   end
+end
 
-  if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+
+-- disable semanticTokens
+M.on_init = function(client, _)
+  if client.supports_method "textDocument/semanticTokens" then
     client.server_capabilities.semanticTokensProvider = nil
   end
 end
@@ -42,6 +40,11 @@ M.capabilities.textDocument.completion.completionItem = {
     },
   },
 }
+
+M.defaults = function()
+  dofile(vim.g.base46_cache .. "lsp")
+  require("nvchad.lsp").diagnostic_config()
+end
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -87,6 +90,5 @@ if not configs.plantuml_lsp then
 
   lspconfig.plantuml_lsp.setup{};
 end
-
 
 return M

@@ -3,7 +3,7 @@ local glance = require('glance')
 local actions = glance.actions
 
 glance.setup({
-  height = 18, -- Height of the window
+  height = 20, -- Height of the window
   zindex = 45,
 
   -- By default glance will open preview "embedded" within your active window
@@ -13,9 +13,9 @@ glance.setup({
 
   -- Or use a function to enable `detached` only when the active window is too small
   -- (default behavior)
-  detached = function(winid)
-    return vim.api.nvim_win_get_width(winid) < 100
-  end,
+  -- detached = function(winid)
+  --   return vim.api.nvim_win_get_width(winid) < 100
+  -- end,
 
   preview_win_opts = { -- Configure preview window options
     cursorline = true,

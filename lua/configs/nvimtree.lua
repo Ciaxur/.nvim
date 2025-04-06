@@ -1,3 +1,5 @@
+dofile(vim.g.base46_cache .. "nvimtree")
+
 local options = {
   filters = {
     enable = true,
@@ -20,7 +22,9 @@ local options = {
     preserve_window_proportions = true,
     adaptive_size = true,
     side = "left",
-    width = 30,
+    width = {
+      max = 50,
+    },
 
     float = {
       enable = false,
@@ -50,12 +54,6 @@ local options = {
     severity = {
       min = vim.diagnostic.severity.HINT,
       max = vim.diagnostic.severity.ERROR,
-    },
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
     },
   },
   filesystem_watchers = {
@@ -90,32 +88,6 @@ local options = {
         folder = true,
         folder_arrow = true,
         git = false,
-      },
-
-      glyphs = {
-        default = "",
-        symlink = "",
-        bookmark = "󰆤",
-        modified = "●",
-        folder = {
-          arrow_closed = "",
-          arrow_open = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
-        },
-        git = {
-          unstaged = "✗",
-          staged = "✓",
-          unmerged = "",
-          renamed = "➜",
-          untracked = "★",
-          deleted = "",
-          ignored = "◌",
-        },
       },
     },
   },

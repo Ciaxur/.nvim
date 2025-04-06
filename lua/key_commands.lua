@@ -1,7 +1,7 @@
 
 local M = {}
 
-M.general = {
+local commands = {
   -- ":W" -> sudo saves current file
   ["-nargs=0 W"] = "execute 'w !sudo tee % > /dev/null'",
 
@@ -23,5 +23,12 @@ M.general = {
   -- Copies the current open buffer's relative path to clipboard
   ["-nargs=0 CopyFileRelPath"] = "normal! :let @+ = expand(\"%:.\")<CR>",
 }
+
+-- Register general commands.
+M.load_commands = function()
+  for cmd, action in pairs(commands) do
+    vim.cmd(string.format("command! %s %s", cmd, action))
+  end
+end
 
 return M

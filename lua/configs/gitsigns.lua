@@ -1,4 +1,4 @@
-local utils = require "core.utils"
+dofile(vim.g.base46_cache .. "git")
 
 local config = {
   -- Don't show signs for staged hunks.
@@ -9,7 +9,7 @@ local config = {
     change = { text = "│" },
     delete = { text = "󰍵" },
     topdelete = { text = "‾" },
-    changedelete = { text = "~" },
+    changedelete = { text = "󱕖" },
     untracked = { text = "│" },
   },
   signs_staged = {
@@ -30,10 +30,6 @@ local config = {
     ignore_whitespace = false,
     virt_text_priority = 100,
   },
-
-  on_attach = function(bufnr)
-    utils.load_mappings("gitsigns", { buffer = bufnr })
-  end,
 };
 
 return config;

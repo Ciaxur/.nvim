@@ -1,4 +1,5 @@
 -- NOTE: See docs ':h mason.nvim'
+dofile(vim.g.base46_cache .. "mason")
 
 local options = {
   ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
@@ -7,9 +8,9 @@ local options = {
 
   ui = {
     icons = {
-      package_pending = "➜",
-      package_installed = "✓ ",
-      package_uninstalled = "✗",
+      package_pending = " ",
+      package_installed = " ",
+      package_uninstalled = " ",
     },
 
     keymaps = {

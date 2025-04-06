@@ -60,4 +60,6 @@ local options = {
   },
 }
 
-return options
+local nvchad_config = require("nvchad.configs.telescope");
+local merged_config = vim.tbl_deep_extend("force", options, nvchad_config);
+return merged_config;

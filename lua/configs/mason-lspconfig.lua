@@ -1,6 +1,6 @@
 -- NOTE: See docs ':h mason-lspconfig-settings'
-local lspconfig_options = require('plugins.configs.lspconfig');
-local lspconfig = require("lspconfig");
+local lspconfig_options = require('configs.lspconfig');
+local lspconfig = require "lspconfig"
 
 local options = {
   -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
@@ -105,7 +105,7 @@ local options = {
     end,
 
     ["clangd"] = function()
-      lspconfig.clangd.setup(require('plugins.configs.clangd'));
+      lspconfig.clangd.setup(require('configs.clangd'));
     end,
 
     ["gopls"] = function()
