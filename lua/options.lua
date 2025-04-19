@@ -56,10 +56,12 @@ o.updatetime = 250
 opt.whichwrap:append "<>[]hl"
 
 -- Folding - https://neovim.io/doc/user/fold.html
-opt.foldmethod = "indent"
+-- vim.wo.foldmethod = "indent"
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- Unfolded by default
-opt.foldlevel = 99
+vim.wo.foldlevel = 99
 
 -- disable some default providers
 g.loaded_node_provider = 0
