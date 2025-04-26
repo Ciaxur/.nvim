@@ -173,6 +173,9 @@ return {
     end,
   },
 
+  ----------------------
+  --- Telescope plugins
+  ----------------------
   {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -257,7 +260,7 @@ return {
 
         -- Ctrl+Shift+L
         ["Select All"]         = "<C-L>",
-      };
+      }
     end,
   },
 
@@ -376,5 +379,45 @@ return {
   {
     "aklt/plantuml-syntax",
     ft = "plantuml",
+  },
+
+  ----------------------
+  --- Debug tools
+  ----------------------
+  -- Debug Adapter Client (DAP)
+  {
+    "mfussenegger/nvim-dap",
+    event = "LspAttach",
+    config = function ()
+      local dap = require("dap")
+      local dap_configs = require("configs.dap")
+      dap.configurations = vim.tbl_extend(
+        "force",
+        dap.configurations,
+        dap_configs.configurations
+      );
+
+      dap.adapters = vim.tbl_extend(
+        "force",
+        dap.adapters,
+        dap_configs.adapters
+      );
+    end,
+    opts = function ()
+      return require("configs.dap")
+    end
+  },
+
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
+    event = "VeryLazy",
+    config = function ()
+      require("configs.dapui");
+    end
+    -- More info on configs -> :h dapui.setup()
   },
 }

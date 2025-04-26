@@ -365,3 +365,15 @@ map({ "n", "v" }, "<RightMouse>", function()
 
   require("menu").open(options, { mouse = true })
 end, {})
+
+
+----------------------------------------- DAP -----------------------------------------
+-- dap menu
+map("n", "<leader>dr", "<cmd>DapNew<CR>", { desc = "dap start one/more debug sessions", silent = true });
+map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "dap toggle breakpoint", silent = true });
+map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "dap continue", silent = true });
+map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "dap step into", silent = true });
+map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "dap step out", silent = true });
+map("n", "<leader>dn", "<cmd>DapStepOver<CR>", { desc = "dap step over", silent = true });
+map("n", "<leader>dx", "<cmd>DapTerminate<CR>", { desc = "dap teminate", silent = true });
+
