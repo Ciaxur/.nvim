@@ -1,5 +1,5 @@
 -- NOTE: See docs ':h mason-lspconfig-settings'
-local lspconfig_options = require('configs.lspconfig');
+local lspconfig_options = require('configs.lspconfig')
 local lspconfig = require "lspconfig"
 
 local options = {
@@ -32,7 +32,7 @@ local options = {
       lspconfig[server_name].setup {
         on_attach = lspconfig_options.on_attach,
         capabilities = lspconfig_options.capabilities,
-      };
+      }
     end,
     -- Next, you can provide targeted overrides for specific servers.
     ["lua_ls"] = function()
@@ -58,7 +58,7 @@ local options = {
             },
           },
         },
-      };
+      }
     end,
 
     ["pyright"] = function()
@@ -74,7 +74,7 @@ local options = {
 
           return lspconfig_options.on_attach(client, bufnr)
         end,
-      };
+      }
     end,
 
     ["rust_analyzer"] = function()
@@ -95,17 +95,21 @@ local options = {
           vim.opt.tabstop = 2
           vim.opt.softtabstop = 2
         end,
-      };
+      }
     end,
 
     ["eslint"] = function()
       lspconfig.eslint.setup {
         capabilities = lspconfig_options.capabilities,
-      };
+      }
     end,
 
     ["clangd"] = function()
-      lspconfig.clangd.setup(require('configs.clangd'));
+      local default_clangd_config = require('configs.clangd');
+      local config = vim.tbl_extend("force", default_clangd_config, {
+        capabilities = lspconfig_options.capabilities,
+      });
+      lspconfig.clangd.setup(config);
     end,
 
     ["gopls"] = function()
@@ -124,7 +128,7 @@ local options = {
             staticcheck = true,
           },
         },
-      };
+      }
     end,
   },
 }

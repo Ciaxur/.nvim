@@ -8,13 +8,13 @@ local options = {
 
   highlight = {
     enable = true,
-    additional_vim_regex_highlighting = false,
+    use_languagetree = true,
   },
 
   indent = { enable = true },
 
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  -- textobjects = { enable = true },
+  textobjects = { enable = true },
 }
 
 return options

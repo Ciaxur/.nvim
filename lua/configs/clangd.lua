@@ -48,29 +48,29 @@ local function symbol_info()
 end
 
 return {
-  default_config = {
-    cmd = { 'clangd' },
-    filetypes = { 'c', 'cc', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-    root_dir = function(fname)
-      return util.root_pattern(
-        '.clangd',
-        '.clang-tidy',
-        '.clang-format',
-        'compile_commands.json',
-        'compile_flags.txt',
-        'configure.ac' -- AutoTools
-      )(fname) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-    end,
-    single_file_support = true,
-    capabilities = {
-      textDocument = {
-        completion = {
-          editsNearCursor = true,
-        },
+  cmd = { 'clangd' },
+  filetypes = { 'c', 'cc', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  root_dir = function(fname)
+    return util.root_pattern(
+      '.clangd',
+      '.clang-tidy',
+      '.clang-format',
+      'compile_commands.json',
+      'compile_flags.txt',
+      'configure.ac' -- AutoTools
+    )(fname) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+  end,
+  single_file_support = true,
+
+  capabilities = {
+    textDocument = {
+      completion = {
+        editsNearCursor = true,
       },
-      offsetEncoding = { 'utf-8', 'utf-16' },
     },
+    offsetEncoding = { 'utf-8', 'utf-16' },
   },
+
   commands = {
     ClangdSwitchSourceHeader = {
       function()
@@ -80,6 +80,7 @@ return {
     },
     ClangdShowSymbolInfo = {
       function()
+        print('here')
         symbol_info()
       end,
       description = 'Show symbol info',
