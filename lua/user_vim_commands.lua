@@ -75,6 +75,11 @@ new_cmd("CopyGithubURLFile", function ()
   print(string.format("Copied: %s", remote_url));
 end, {});
 
+-- nvim-notify commands
+new_cmd("NvimNotifyHistory", function ()
+  require('telescope').extensions.notify.notify();
+end, { desc = "Opens notification history in telescope" });
+
 -- User Command that copies the selected line range to a remote
 -- git URL into the clipboard.
 --

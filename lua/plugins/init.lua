@@ -322,6 +322,18 @@ return {
     end,
   },
 
+  {
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function ()
+      local nvim_notify_config = require("configs.nvim_notify")
+      nvim_notify_config.replace_vim_notify();
+
+      require("notify").setup(nvim_notify_config);
+    end,
+  },
+
   -- Find & Replace
   {
     "nvim-pack/nvim-spectre",
