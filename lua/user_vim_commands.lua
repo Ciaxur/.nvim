@@ -80,6 +80,26 @@ new_cmd("NvimNotifyHistory", function ()
   require('telescope').extensions.notify.notify();
 end, { desc = "Opens notification history in telescope" });
 
+
+-- Plenary's profiling commands
+new_cmd("PlenaryStartProfile", function ()
+  local profile_filepath = "/tmp/plenary_profile.log";
+  vim.notify("Creating profile under '"..profile_filepath.."'");
+  require('plenary.profile').start(profile_filepath);
+end, { desc = "Starts profiling session" });
+
+new_cmd("PlenaryStartProfileFlamegraph", function ()
+  local profile_filepath = "/tmp/plenary_profile.log";
+  vim.notify("Creating profile under '"..profile_filepath.."'");
+  require('plenary.profile').start(profile_filepath, { flame = true });
+end, { desc = "Starts profiling session with flamegraph support" });
+
+new_cmd("PlenaryStopProfile", function ()
+  vim.notify("Stopping plenary profile");
+  require('plenary.profile').stop();
+end, { desc = "Stops profiling session" });
+
+
 -- User Command that copies the selected line range to a remote
 -- git URL into the clipboard.
 --
