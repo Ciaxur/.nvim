@@ -91,7 +91,16 @@ end, { desc = "Starts profiling session" });
 new_cmd("PlenaryStartProfileFlamegraph", function ()
   local profile_filepath = "/tmp/plenary_profile.log";
   vim.notify("Creating profile under '"..profile_filepath.."'");
-  require('plenary.profile').start(profile_filepath, { flame = true });
+
+  require('plenary.profile').start(
+    profile_filepath,
+    {
+      flame = true,
+
+      -- Sample rate in microseconds
+      interval = 1,
+    }
+  );
 end, { desc = "Starts profiling session with flamegraph support" });
 
 new_cmd("PlenaryStopProfile", function ()
