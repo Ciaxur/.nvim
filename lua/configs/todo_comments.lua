@@ -45,7 +45,7 @@ return {
   colors = {
     info    = { "#2563EB" },
     task    = { "#687000" },
-    error   = { "#700000" },
+    error   = { "#A00000" },
     warning = { "#994C00" },
     test    = { "#994C00" },
     wip     = { "#00ACC1" },
