@@ -119,7 +119,9 @@ map("n", "<leader>gv", "<cmd>Neogit<CR>", { desc = "opens neogit view" })
 
 ----------------------------------------- lspconfig -----------------------------------------
 map("n", "K", function()
-  vim.lsp.buf.hover()
+  vim.lsp.buf.hover({
+    border = "rounded",
+  });
 end, { desc = "LSP hover" })
 
 map("n", "<leader>lgf", function()
