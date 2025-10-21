@@ -180,3 +180,8 @@ end, {
 });
 
 
+new_cmd("ToggleRenderMarkdown", function (_)
+  require('render-markdown').toggle();
+end, {
+  desc = "Toggles RenderMarkdown",
+});
