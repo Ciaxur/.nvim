@@ -376,6 +376,15 @@ return {
     event = "BufEnter",
   },
 
+  -- PlantUML Syntax
+  {
+    "aklt/plantuml-syntax",
+    ft = "plantuml",
+  },
+
+  ----------------------
+  --- Markdown
+  ----------------------
   -- Markdown preview
   {
     "iamcco/markdown-preview.nvim",
@@ -387,10 +396,16 @@ return {
     end,
   },
 
-  -- PlantUML Syntax
   {
-    "aklt/plantuml-syntax",
-    ft = "plantuml",
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    ft = { "markdown" },
+
+    -- :h render-markdown-setup
+    opts = {
+      completions = { lsp = { enabled = true } },
+      render_modes = { 'n', 'c', 't' },
+    },
   },
 
   ----------------------
