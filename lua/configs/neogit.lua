@@ -20,13 +20,40 @@ neogit.setup({
   -- "ascii"   is the graph the git CLI generates
   -- "unicode" is the graph like https://github.com/rbong/vim-flog
   graph_style = "unicode",
-  -- Used to generate URL's for branch popup action "pull request".
+
+  -- Show relative date by default. When set, use `strftime` to display dates
+  commit_date_format = nil,
+  log_date_format = nil,
+
+  -- Used to generate URL's for branch popup action "pull request" or opening a commit.
   git_services = {
-    ["github.com"] = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
-    ["bitbucket.org"] = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
-    ["gitlab.com"] = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
-    ["azure.com"] = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
+      ["github.com"] = {
+          pull_request = "https://github.com/${owner}/${repository}/compare/${branch_name}?expand=1",
+          commit = "https://github.com/${owner}/${repository}/commit/${oid}",
+          tree = "https://${host}/${owner}/${repository}/tree/${branch_name}",
+      },
+      ["bitbucket.org"] = {
+          pull_request = "https://bitbucket.org/${owner}/${repository}/pull-requests/new?source=${branch_name}&t=1",
+          commit = "https://bitbucket.org/${owner}/${repository}/commits/${oid}",
+          tree = "https://bitbucket.org/${owner}/${repository}/branch/${branch_name}",
+      },
+      ["gitlab.com"] = {
+          pull_request = "https://gitlab.com/${owner}/${repository}/merge_requests/new?merge_request[source_branch]=${branch_name}",
+          commit = "https://gitlab.com/${owner}/${repository}/-/commit/${oid}",
+          tree = "https://gitlab.com/${owner}/${repository}/-/tree/${branch_name}?ref_type=heads",
+      },
+      ["azure.com"] = {
+          pull_request = "https://dev.azure.com/${owner}/_git/${repository}/pullrequestcreate?sourceRef=${branch_name}&targetRef=${target}",
+          commit = "",
+          tree = "",
+      },
+      ["codeberg.org"] = {
+        pull_request = "https://${host}/${owner}/${repository}/compare/${branch_name}",
+        commit = "https://${host}/${owner}/${repository}/commit/${oid}",
+        tree = "https://${host}/${owner}/${repository}/src/branch/${branch_name}",
+      },
   },
+
   -- Allows a different telescope sorter. Defaults to 'fuzzy_with_index_bias'. The example below will use the native fzf
   -- sorter instead. By default, this function returns `nil`.
   telescope_sorter = function()
@@ -60,16 +87,41 @@ neogit.setup({
   -- Flag description: https://git-scm.com/docs/git-branch#Documentation/git-branch.txt---sortltkeygt
   -- Sorting keys: https://git-scm.com/docs/git-for-each-ref#_options
   sort_branches = "-committerdate",
+
+  -- Value passed to the `--<commit_order>-order` flag of the `git log` command
+  -- Determines how commits are traversed and displayed in the log / graph:
+  --   "topo"         topological order (parents always before children, good for graphs, slower on large repos)
+  --   "date"         chronological order by commit date
+  --   "author-date"  chronological order by author date
+  --   ""             disable explicit ordering (fastest, recommended for very large repos)
+  commit_order = "topo",
+
+  -- Default for new branch name prompts
+  initial_branch_name = "",
+
   -- Change the default way of opening neogit
   kind = "tab",
+
+  -- Floating window style
+  floating = {
+    relative = "editor",
+    width = 0.8,
+    height = 0.7,
+    style = "minimal",
+    border = "rounded",
+  },
+
   -- Disable line numbers and relative line numbers
   disable_line_numbers = true,
+  -- Disable relative line numbers
+  disable_relative_line_numbers = true,
   -- The time after which an output console is shown for slow running commands
   console_timeout = 2000,
   -- Automatically show console if a command takes more than console_timeout milliseconds
   auto_show_console = true,
   -- Automatically close the console if the process exits with a 0 (success) status
   auto_close_console = true,
+  notification_icon = "󰊢",
   status = {
     show_head_commit_hash = true,
     recent_commit_count = 20,
