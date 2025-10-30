@@ -48,6 +48,9 @@ opt.backup = false
 opt.writebackup = false
 opt.termguicolors = true
 
+-- pressing 'gw' aligns text to textwidth
+opt.textwidth = 100
+
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
