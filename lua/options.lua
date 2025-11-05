@@ -48,8 +48,12 @@ opt.backup = false
 opt.writebackup = false
 opt.termguicolors = true
 
--- pressing 'gw' aligns text to textwidth
+-- pressing 'gw' aligns text to textwidth and remove auto-wrap.
+-- see :h formatoptions
 opt.textwidth = 100
+-- NOTE: something overrides this. maybe it's for markdown only? if
+-- this happens in another language, then figure this out.
+-- opt.formatoptions:remove("t")
 
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
