@@ -3,6 +3,8 @@ local lspconfig = require "lspconfig";
 local configs = require "lspconfig.configs";
 local nvconfig = require("nvconfig");
 
+-- NOTE: These configs are used within mason-lspconfig.
+
 -- export on_attach & capabilities for custom lspconfigs
 M.on_attach = function(client, bufnr)
   client.server_capabilities.documentFormattingProvider = false

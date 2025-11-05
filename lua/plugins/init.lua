@@ -82,7 +82,7 @@ return {
 
   -- lsp stuff
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       return require "configs.mason"
@@ -94,6 +94,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
+      "mason-org/mason.nvim",
     },
     event = "User FilePost",
     opts = function()
