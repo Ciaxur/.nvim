@@ -68,7 +68,9 @@ return {
   -- formatting!
   {
     "stevearc/conform.nvim",
-    opts = require("configs.conform"),
+    opts = function()
+      return require("configs.conform")
+    end,
   },
 
   -- git stuff
@@ -98,7 +100,7 @@ return {
     },
     event = "User FilePost",
     opts = function()
-      return require('configs.mason-lspconfig');
+      return require('configs.mason-lspconfig')
     end,
   },
 
@@ -106,10 +108,10 @@ return {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     config = function()
-      require("configs.lspconfig").defaults();
+      require("configs.lspconfig").defaults()
     end,
     opts = function ()
-      return require("configs.lspconfig");
+      return require("configs.lspconfig")
     end,
   },
 
@@ -124,7 +126,7 @@ return {
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
-          require("configs.luasnip")(opts);
+          require("configs.luasnip")(opts)
         end,
       },
 
@@ -246,7 +248,7 @@ return {
     event = "VeryLazy",
     init = function()
       -- Disable default mappings.
-      vim.g.VM_default_mappings = 0;
+      vim.g.VM_default_mappings = 0
 
       -- Since this plugin is for vim, we need to do our own custom
       -- mappings.
@@ -275,11 +277,11 @@ return {
     "lewis6991/gitsigns.nvim",
     ft = { "gitcommit", "diff" },
     opts = function()
-      return require("configs.gitsigns");
+      return require("configs.gitsigns")
     end,
     config = function(_, opts)
-      dofile(vim.g.base46_cache .. "git");
-      require("gitsigns").setup(opts);
+      dofile(vim.g.base46_cache .. "git")
+      require("gitsigns").setup(opts)
     end,
   },
 
@@ -328,9 +330,9 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function ()
       local nvim_notify_config = require("configs.nvim_notify")
-      nvim_notify_config.replace_vim_notify();
+      nvim_notify_config.replace_vim_notify()
 
-      require("notify").setup(nvim_notify_config);
+      require("notify").setup(nvim_notify_config)
     end,
   },
 
@@ -369,9 +371,9 @@ return {
     "johmsalas/text-case.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
-      local config = require("configs.text_case");
-      require("textcase").setup(config);
-      require("telescope").load_extension("textcase");
+      local config = require("configs.text_case")
+      require("textcase").setup(config)
+      require("telescope").load_extension("textcase")
     end,
     event = "BufEnter",
   },
@@ -422,13 +424,13 @@ return {
         "force",
         dap.configurations,
         dap_configs.configurations
-      );
+      )
 
       dap.adapters = vim.tbl_extend(
         "force",
         dap.adapters,
         dap_configs.adapters
-      );
+      )
     end,
     opts = function ()
       return require("configs.dap")
@@ -443,7 +445,7 @@ return {
     },
     event = "VeryLazy",
     config = function ()
-      require("configs.dapui");
+      require("configs.dapui")
     end
     -- More info on configs -> :h dapui.setup()
   },

@@ -373,6 +373,7 @@ end, {})
 -- dap menu
 map("n", "<leader>dr", "<cmd>DapNew<CR>", { desc = "dap start one/more debug sessions", silent = true });
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "dap toggle breakpoint", silent = true });
+map("n", "<leader>dd", "<cmd>DapClearBreakpoints<CR>", { desc = "dap clear all breakpoints", silent = true });
 map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "dap continue", silent = true });
 map("n", "<leader>di", "<cmd>DapStepInto<CR>", { desc = "dap step into", silent = true });
 map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "dap step out", silent = true });
