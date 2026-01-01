@@ -9,11 +9,31 @@ local M = {}
 M.base46 = {
 	theme = "tokyonight",
   transparency = true,
+  integrations = { "dap", "cmp" },
 }
 
 M.nvdash = { load_on_startup = true }
 
+M.lsp = {
+  signature = true,
+}
+
+M.colorify = {
+  enabled = true,
+  mode = "virtual", -- fg, bg, virtual
+  virt_text = "󱓻 ",
+  highlight = { hex = true, lspvars = true },
+}
+
 M.ui = {
+  cmp = {
+    icons_left = false, -- only for non-atom styles!
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+    abbr_maxwidth = 60,
+    -- for tailwind, css lsp etc
+    format_colors = { lsp = true, icon = "󱓻" },
+  },
+
   tabufline = {
     lazyload = false,
     bufwidth = 21,
