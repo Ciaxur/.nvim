@@ -44,6 +44,19 @@ local function get_git_remote_url()
   return remote_url
 end
 
+---
+--- Attempts to convert the given url from SSH url to an HTTPS one.
+---
+---@param url string URL to convert.
+---@return string HTTPS git remote url.
+local function convert_git_remote_url_ssh_to_https(url)
+  if url:find("^git@") then
+    local new_s, _ = url:gsub("^git@", ""):gsub(":", "/");
+    return string.format("https://%s", new_s);
+  end
+  return url;
+end
+
 -- Function to get head commit.
 local function get_git_head_commit()
   local head_commit = vim.fn.system("git rev-parse HEAD");
@@ -61,6 +74,7 @@ new_cmd("CopyGithubURLFile", function ()
   if not git_remote_url then
     return
   end
+  git_remote_url = convert_git_remote_url_ssh_to_https(git_remote_url);
   local head_commit = get_git_head_commit();
 
   local remote_url = string.format(
@@ -162,6 +176,7 @@ new_cmd("CopyGithubURLSelectedLines", function (opts)
   if not git_remote_url then
     return
   end
+  git_remote_url = convert_git_remote_url_ssh_to_https(git_remote_url);
 
   local head_commit = get_git_head_commit();
   local remote_url = string.format(
