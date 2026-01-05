@@ -3,6 +3,10 @@ return {
 
   {
     "nvchad/base46",
+    -- NOTE: This commit points to tag v3.0. Currently this just works... it should've been coupled
+    -- with nvchad's v2.5. So using the commit pin here for now.
+    -- In the future, make sure to couple it.
+    commit = "45b336e",
     build = function()
       require("base46").load_all_highlights()
     end,
@@ -11,17 +15,30 @@ return {
   {
     "nvchad/ui",
     lazy = false,
+    -- NOTE: Similar to base46's comment. Make sure to couple the pin with nvchad in the future.
+    commit = "bea2af0",
     config = function()
       require "nvchad"
     end,
   },
 
-  "nvzone/volt",
-  "nvzone/menu",
-  { "nvzone/minty", cmd = { "Huefy", "Shades" } },
+  {
+    "nvzone/volt",
+    commit = "620de13",
+  },
+  {
+    "nvzone/menu",
+    commit = "7a0a4a2",
+  },
+  {
+    "nvzone/minty",
+    commit = "aafc9e8",
+    cmd = { "Huefy", "Shades" },
+  },
 
   {
     "nvim-tree/nvim-web-devicons",
+    branch = "master",
     opts = function()
       dofile(vim.g.base46_cache .. "devicons")
       return { override = require "nvchad.icons.devicons" }
@@ -30,16 +47,32 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "User FilePost",
-    opts = {
-      indent = { char = "│", highlight = "IblChar" },
-      scope = { char = "│", highlight = "IblScopeChar" },
-    },
+    tag = "v3.9.0",
+    main = "ibl",
+    event = "VeryLazy",
+
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = require("configs.indent_blankline"),
+
     config = function(_, opts)
       dofile(vim.g.base46_cache .. "blankline")
 
       local hooks = require "ibl.hooks"
       hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+      end)
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark);
+
       require("ibl").setup(opts)
 
       dofile(vim.g.base46_cache .. "blankline")
@@ -49,6 +82,7 @@ return {
   -- file managing , picker etc
   {
     "nvim-tree/nvim-tree.lua",
+    tag = "v1.14.0",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     opts = function()
       return require "configs.nvimtree"
@@ -57,6 +91,8 @@ return {
 
   {
     "folke/which-key.nvim",
+    -- commit = "3aab214",
+    tag = "v3.17.0",
     keys = { "<leader>", "<c-w>", '"', "'", "`", "c", "v", "g" },
     cmd = "WhichKey",
     opts = function()
@@ -68,23 +104,16 @@ return {
   -- formatting!
   {
     "stevearc/conform.nvim",
+    tag = "v9.1.0",
     opts = function()
       return require("configs.conform")
-    end,
-  },
-
-  -- git stuff
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
-    opts = function()
-      return require "configs.gitsigns"
     end,
   },
 
   -- lsp stuff
   {
     "mason-org/mason.nvim",
+    tag = "v2.1.0",
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     opts = function()
       return require "configs.mason"
@@ -94,6 +123,7 @@ return {
   -- mason extension that allows ease of lspconfig
   {
     "williamboman/mason-lspconfig.nvim",
+    tag = "v2.1.0",
     dependencies = {
       "neovim/nvim-lspconfig",
       "mason-org/mason.nvim",
@@ -106,6 +136,7 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    tag = "v2.5.0",
     event = "User FilePost",
     config = function()
       require("configs.lspconfig").defaults()
@@ -118,11 +149,13 @@ return {
   -- load luasnips + cmp related in insert mode only
   {
     "hrsh7th/nvim-cmp",
+    branch = "main",
     event = "InsertEnter",
     dependencies = {
       {
         -- snippet plugin
         "L3MON4D3/LuaSnip",
+        tag = "v2.4.1",
         dependencies = "rafamadriz/friendly-snippets",
         opts = { history = true, updateevents = "TextChanged,TextChangedI" },
         config = function(_, opts)
@@ -133,6 +166,7 @@ return {
       -- autopairing of (){}[] etc
       {
         "windwp/nvim-autopairs",
+        branch = "master",
         opts = {
           fast_wrap = {},
           disable_filetype = { "TelescopePrompt", "vim" },
@@ -162,6 +196,7 @@ return {
 
   {
     "numToStr/Comment.nvim",
+    branch = "master",
     keys = {
       { "gcc", mode = "n",          desc = "Comment toggle current line" },
       { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
@@ -180,6 +215,7 @@ return {
   ----------------------
   {
     "nvim-telescope/telescope.nvim",
+    tag = "v0.2.1",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     cmd = "Telescope",
     opts = function()
@@ -189,26 +225,28 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    tag = "v0.10.0",
+    lazy = false,
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     build = ":TSUpdate",
-    opts = function()
-      return require "configs.treesitter"
-    end,
+    opts = require "configs.treesitter",
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter").setup(opts)
     end,
   },
 
   -- Whitespaces.
   {
-    'jdhao/whitespace.nvim',
+    "jdhao/whitespace.nvim",
+    branch = "master",
     event = "VimEnter",
   },
 
  -- Glance. Code reference and definitions preview.
   {
-    'DNLHC/glance.nvim',
+    "DNLHC/glance.nvim",
+    branch = "master",
     event = "VeryLazy",
     config = function()
       require "configs.glance"
@@ -218,6 +256,7 @@ return {
   -- neogit An interactive and powerful Git interface for Neovim, inspired by Magit
   {
     "NeogitOrg/neogit",
+    branch = "master",
     config = function()
       require "configs.neogit"
     end,
@@ -236,6 +275,7 @@ return {
   -- sign. (:Tab /=)
   {
     "godlygeek/tabular",
+    branch = "master",
     event = "VeryLazy",
   },
 
@@ -245,6 +285,7 @@ return {
   --  configs are applied differently.
   {
     "mg979/vim-visual-multi",
+    branch = "master",
     event = "VeryLazy",
     init = function()
       -- Disable default mappings.
@@ -269,13 +310,16 @@ return {
   -- https://github.com/alvan/vim-closetag
   {
     "alvan/vim-closetag",
+    branch = "master",
     event = "VeryLazy",
   },
 
   -- git signs
   {
     "lewis6991/gitsigns.nvim",
+    branch = "main",
     ft = { "gitcommit", "diff" },
+    event = "User FilePost",
     opts = function()
       return require("configs.gitsigns")
     end,
@@ -289,6 +333,7 @@ return {
   -- large files.
   {
     "LunarVim/bigfile.nvim",
+    branch = "main",
     event = "BufReadPre",
     opts = {
       filesize = 1, -- size of file in MiB for which to trigger.
@@ -301,6 +346,7 @@ return {
   -- Trouble | better diognostics tool
   {
     "folke/trouble.nvim",
+    branch = "main",
     event = "LspAttach",
     opts = function()
       return require "configs.trouble"
@@ -310,6 +356,7 @@ return {
   -- todo highlight and tracking comments
   {
     "folke/todo-comments.nvim",
+    branch = "main",
     event = "LspAttach",
     opts = require("configs.todo_comments"),
   },
@@ -318,6 +365,7 @@ return {
   --   For API docs ":h fidget.api"
   {
     "j-hui/fidget.nvim",
+    branch = "main",
     event = "LspAttach",
     opts = function()
       return require("configs.fidget")
@@ -326,6 +374,7 @@ return {
 
   {
     "rcarriga/nvim-notify",
+    branch = "master",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function ()
@@ -339,6 +388,7 @@ return {
   -- Find & Replace
   {
     "nvim-pack/nvim-spectre",
+    branch = "master",
     event = "VeryLazy",
     dependencies = {
       "nvim-lua/plenary.nvim"
@@ -348,6 +398,7 @@ return {
   -- Move selected lines
   {
     "fedepujol/move.nvim",
+    branch = "main",
     event = "VeryLazy",
     opts = require("configs.move"),
   },
@@ -355,6 +406,7 @@ return {
   -- Flatten - Enables opening files in current open nvim buffer
   {
     "willothy/flatten.nvim",
+    branch = "main",
     config = true,
     opts = require("configs.flatten"),
 
@@ -369,6 +421,7 @@ return {
   -- text-case - Mutate text. Uppercase/Lowercase/Cammelcase/etc...
   {
     "johmsalas/text-case.nvim",
+    branch = "main",
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       local config = require("configs.text_case")
@@ -381,6 +434,7 @@ return {
   -- PlantUML Syntax
   {
     "aklt/plantuml-syntax",
+    branch = "master",
     ft = "plantuml",
   },
 
@@ -390,6 +444,7 @@ return {
   -- Markdown preview
   {
     "iamcco/markdown-preview.nvim",
+    branch = "master",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
     build = "cd app && yarn install",
@@ -400,6 +455,7 @@ return {
 
   {
     'MeanderingProgrammer/render-markdown.nvim',
+    branch = "main",
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
     ft = { "markdown" },
 
@@ -416,6 +472,7 @@ return {
   -- Debug Adapter Client (DAP)
   {
     "mfussenegger/nvim-dap",
+    branch = "master",
     event = "LspAttach",
     config = function ()
       local dap = require("dap")
@@ -439,6 +496,7 @@ return {
 
   {
     "rcarriga/nvim-dap-ui",
+    branch = "master",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
