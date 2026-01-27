@@ -3,6 +3,18 @@ local lspconfig = require "lspconfig";
 local configs = require "lspconfig.configs";
 local nvconfig = require("nvconfig");
 
+-- Override the signature help config/style so it's not dark.
+local signature_help = vim.lsp.buf.signature_help;
+vim.lsp.buf.signature_help = function(config)
+  config = config or {}
+  -- config.border = config.border or "rounded"
+  config.border = "rounded"
+  config.title = ""
+
+  vim.api.nvim_set_hl(0, 'LspSignatureActiveParameter', { fg = '#A1A1A1', bold = true });
+  return signature_help(config);
+end
+
 -- NOTE: These configs are used within mason-lspconfig.
 
 -- export on_attach & capabilities for custom lspconfigs
