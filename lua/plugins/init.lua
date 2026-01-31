@@ -257,6 +257,7 @@ return {
   {
     "NeogitOrg/neogit",
     branch = "master",
+    event = "VeryLazy",
     config = function()
       require "configs.neogit"
     end,
