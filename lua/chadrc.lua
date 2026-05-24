@@ -10,6 +10,9 @@ M.base46 = {
 	theme = "tokyonight",
   transparency = true,
   integrations = { "dap", "cmp" },
+  hl_add = {
+    WinSeparator = { fg = "#7aa2f7" },
+  }
 }
 
 M.nvdash = { load_on_startup = true }
