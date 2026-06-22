@@ -380,3 +380,13 @@ map("n", "<leader>do", "<cmd>DapStepOut<CR>", { desc = "dap step out", silent = 
 map("n", "<leader>dn", "<cmd>DapStepOver<CR>", { desc = "dap step over", silent = true });
 map("n", "<leader>dx", "<cmd>DapTerminate<CR>", { desc = "dap teminate", silent = true });
 
+----------------------------------------- diffview -----------------------------------------
+map("n", "<leader>dv", function()
+  local view = require("diffview.lib").get_current_view()
+  if view then
+    vim.cmd("DiffviewClose")
+  else
+    vim.cmd("DiffviewOpen")
+  end
+end, { desc = "toggle diffview" })
+
