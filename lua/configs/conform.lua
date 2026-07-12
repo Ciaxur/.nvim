@@ -2,7 +2,7 @@ local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
     markdown = { "mdformat" },
-    go = { "goimports", "gofmt" },
+    go = { "goimports", "gofumpt" },
     rust = { "rustfmt", lsp_format = "fallback" },
 
     default_format_opts = {

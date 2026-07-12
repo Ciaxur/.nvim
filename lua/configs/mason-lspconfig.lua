@@ -91,6 +91,35 @@ vim.lsp.config("gopls", {
   },
 });
 
+-- Arduino LSP: only register when arduino-cli and the language server are both
+-- present on this machine. Guards against ENOENT/startup errors when syncing
+-- this config to a box without Arduino tooling. Resolve binaries via PATH
+-- (exepath) instead of hardcoded home paths so it stays portable.
+local arduino_cli = vim.fn.exepath("arduino-cli")
+if arduino_cli ~= "" and vim.fn.executable("arduino-language-server") == 1 then
+  local mason_clangd = vim.fn.expand("~/.local/share/nvim/mason/bin/clangd")
+  local clangd = vim.fn.executable(mason_clangd) == 1 and mason_clangd or vim.fn.exepath("clangd")
+  vim.lsp.config("arduino_language_server", {
+    settings = {
+      arduino = {
+        useArduinoCli = true,
+        enableDiagnostics = true,
+      }
+    },
+    filetypes = { 'arduino' },
+    root_dir = function(bufnr, on_dir)
+      local fname = vim.api.nvim_buf_get_name(bufnr)
+      on_dir(vim.fs.root(fname, { 'sketch.yaml', '.git' }) or vim.fs.dirname(fname))
+    end,
+    cmd = {
+      "arduino-language-server",
+      "--cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+      "-cli", arduino_cli,
+      "-clangd", clangd,
+    },
+  })
+end
+
 
 -- Mason setup config.
 local options = {
