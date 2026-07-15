@@ -74,6 +74,9 @@ map("v", "<leader>fm", function()
 end, { desc = "general format highlighted block" })
 
 
+----------------------------------------- cmdpalette -----------------------------------------
+vim.keymap.set("n", ":", "<Plug>(cmdpalette)")
+
 
 ----------------------------------------- tabufline -----------------------------------------
 map("n", "<tab>", function()

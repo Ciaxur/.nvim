@@ -2,6 +2,15 @@ return {
   "nvim-lua/plenary.nvim",
 
   {
+    "hachy/cmdpalette.nvim",
+    event = "VeryLazy",
+    config = function()
+      local options = require("configs.cmdpalette")
+      require("cmdpalette").setup(options)
+    end,
+  },
+
+  {
     "nvchad/base46",
     -- NOTE: This commit points to tag v3.0. Currently this just works... it should've been coupled
     -- with nvchad's v2.5. So using the commit pin here for now.
@@ -73,7 +82,7 @@ return {
 
         vim.api.nvim_set_hl(0, "IblScope", { fg = "#61AFEF" })
       end)
-      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark);
+      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
       require("ibl").setup(opts)
 

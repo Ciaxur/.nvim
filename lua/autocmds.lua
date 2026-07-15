@@ -29,3 +29,21 @@ autocmd({ "BufRead" }, {
     )
   end,
 })
+
+-- cmdpalette.nvim: disable cmp predictions, Tab = cmdline completion, pin palette to top
+autocmd('BufWinEnter', {
+  group = vim.api.nvim_create_augroup('CmdpaletteCompletion', { clear = true }),
+  pattern = 'cmdpalette',
+  callback = function(args)
+    require('cmp').setup.buffer({ enabled = false })
+    vim.keymap.set('i', '<Tab>', '<C-x><C-v>', { buffer = args.buf })
+
+    -- move palette to top of editor
+    local win = vim.api.nvim_get_current_win()
+    local cfg = vim.api.nvim_win_get_config(win)
+    if cfg.relative ~= '' then
+      cfg.row = 1
+      vim.api.nvim_win_set_config(win, cfg)
+    end
+  end,
+})
