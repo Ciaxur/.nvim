@@ -112,6 +112,19 @@ for i = 1, 9, 1 do
 end
 
 
+----------------------------------------- tabs -----------------------------------------
+-- Ctrl+N goes to tab page N (needs kitty keyboard protocol; see tmux extended-keys)
+-- NOTE: If in tmux, set the following to your config:
+-- set -s extended-keys always
+-- set -as terminal-features 'xterm*:extkeys'
+for i = 1, 9, 1 do
+  map("n", "<C-" .. i .. ">", function()
+    if i <= vim.fn.tabpagenr("$") then
+      vim.cmd(i .. "tabnext")
+    end
+  end, { desc = "switch to tab " .. i })
+end
+
 
 ----------------------------------------- NeoGit -----------------------------------------
 map("n", "<leader>gv", "<cmd>Neogit<CR>", { desc = "opens neogit view" })
